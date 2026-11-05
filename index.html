@@ -1,0 +1,75 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#101a20">
+  <title>Aircraft Engine Simulator</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <main class="cockpit">
+    <header class="topbar">
+      <div><p class="eyebrow">FLIGHT SYSTEMS / PISTON ENGINE</p><h1>Engine monitor</h1></div>
+      <button id="engine-toggle" class="engine-button" type="button" aria-pressed="false">Start engine</button>
+    </header>
+
+    <section class="instrument-panel" aria-label="Engine instruments">
+      <article class="instrument tachometer">
+        <div class="instrument-title"><span>Engine speed</span><span class="unit">RPM</span></div>
+        <div class="dial" role="img" aria-label="Engine speed gauge">
+          <div class="dial-number number-zero">0</div><div class="dial-number number-mid">1400</div><div class="dial-number number-max">2800</div>
+          <div class="needle" id="needle"></div><div class="hub"></div>
+        </div>
+        <div class="reading"><strong id="rpm">0</strong><span>RPM</span></div>
+      </article>
+
+      <article class="instrument">
+        <div class="instrument-title"><span>Power</span><span class="unit">OUTPUT</span></div>
+        <div class="big-reading"><strong id="power">0</strong><span>%</span></div>
+        <div class="meter"><div id="power-bar" class="meter-fill"></div></div>
+        <p class="instrument-note">Estimated engine output</p>
+      </article>
+
+      <article class="instrument">
+        <div class="instrument-title"><span>Fuel flow</span><span class="unit">GPH</span></div>
+        <div class="big-reading"><strong id="fuel">0.0</strong><span>GPH</span></div>
+        <div class="meter fuel-meter"><div id="fuel-bar" class="meter-fill"></div></div>
+        <p class="instrument-note">Fuel consumption estimate</p>
+      </article>
+
+      <article class="instrument metric">
+        <div class="instrument-title"><span>Oil pressure</span><span class="unit">PSI</span></div>
+        <div class="metric-reading"><strong id="oil-pressure">0</strong><span>PSI</span></div>
+        <div class="range-track"><i id="oil-pressure-marker"></i></div>
+        <p class="instrument-note">Normal range: 25–60 PSI</p>
+      </article>
+
+      <article class="instrument metric">
+        <div class="instrument-title"><span>Oil temperature</span><span class="unit">°C</span></div>
+        <div class="metric-reading"><strong id="oil-temp">20</strong><span>°C</span></div>
+        <div class="range-track warm"><i id="oil-temp-marker"></i></div>
+        <p class="instrument-note">Temperature rises with engine load</p>
+      </article>
+
+      <article class="instrument metric">
+        <div class="instrument-title"><span>Cylinder head temp</span><span class="unit">°C</span></div>
+        <div class="metric-reading"><strong id="cht">20</strong><span>°C</span></div>
+        <div class="range-track warm"><i id="cht-marker"></i></div>
+        <p class="instrument-note">Cooling varies with airspeed</p>
+      </article>
+    </section>
+
+    <section class="controls" aria-label="Simulation controls">
+      <div class="controls-heading"><div><p class="eyebrow">FLIGHT CONTROLS</p><h2>Adjust conditions</h2></div><div id="status" class="status"><i></i><span>Engine off</span></div></div>
+      <div class="slider-grid">
+        <label class="slider-control" for="throttle"><span class="slider-heading">Throttle <output id="throttle-output">35%</output></span><input id="throttle" type="range" min="0" max="100" value="35"><span class="slider-ends"><span>Idle</span><span>Full</span></span></label>
+        <label class="slider-control" for="mixture"><span class="slider-heading">Mixture <output id="mixture-output">70%</output></span><input id="mixture" type="range" min="0" max="100" value="70"><span class="slider-ends"><span>Lean</span><span>Rich</span></span></label>
+        <label class="slider-control" for="airspeed"><span class="slider-heading">Airspeed <output id="airspeed-output">120 kt</output></span><input id="airspeed" type="range" min="0" max="200" value="120"><span class="slider-ends"><span>0 kt</span><span>200 kt</span></span></label>
+      </div>
+      <p class="disclaimer">A simplified educational simulation—not for real aircraft operation.</p>
+    </section>
+  </main>
+  <script src="app.js"></script>
+</body>
+</html>
